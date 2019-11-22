@@ -2,7 +2,7 @@ master:
   componentName: "jenkins-master"
   image: "jenkins/jenkins"
   tag: "lts"
-  memory: "4096Mi"
+  memory: "2048Mi"
   imagePullPolicy: "IfNotPresent"
   numExecutors: 0
   customJenkinsLabels: []
@@ -12,11 +12,11 @@ master:
   healthProbes: false
   resources:
     requests:
+      cpu: "1000m"
+      memory: "1024Mi"
+    limits:
       cpu: "2000m"
       memory: "2048Mi"
-    limits:
-      cpu: "4000m"
-      memory: "4096Mi"
   serviceType: ClusterIP
   # List of plugins to be install during Jenkins master start
   installPlugins:
