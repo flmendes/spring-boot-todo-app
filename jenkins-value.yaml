@@ -192,6 +192,3 @@ master:
 
   # Can be used to disable rendering master test resources when using helm template
   testEnabled: true
-
-agent:
-  enabled: false
