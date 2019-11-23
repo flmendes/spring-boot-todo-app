@@ -77,6 +77,9 @@
                 <artifactId>jib-maven-plugin</artifactId>
                 <version>1.8.0</version>
                 <configuration>
+					<from>
+						<image>openjdk:8u222-jre</image>
+					</from>
 					<to>
 						<image>us.icr.io/mendes/spring-boot-todo-app</image>
 					</to>                    
