@@ -55,7 +55,7 @@ volumes: [
       //JIB
       container('maven') {
           // sh 'mvn -B compile jib:build'
-          sh 'mvn -B package -Djib.to.auth.username=iamapikey -Djib.to.auth.password=zMnFlOcwimzQ18tvZoy5C79Zzdq8FBSobuaazvIIXfQU'
+          sh 'mvn -B package -Djib.to.auth.username=${IBM_REGISTRY_USER} -Djib.to.auth.password=${IBM_REGISTRY_API_KEY}'
       }
 
     }
