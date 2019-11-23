@@ -55,7 +55,7 @@ volumes: [
       //JIB
       container('maven') {
           // sh 'mvn -B compile jib:build'
-          sh 'mvn -b package'
+          sh 'mvn -B package'
       }
 
     }
