@@ -38,27 +38,28 @@ volumes: [
         throw(exc)
       }
     }
-    stage('Build') {
-    //   container('gradle') {
-    //     sh "gradle build"
-    //   }
-        container('maven') {
-          sh 'mvn -B clean compile'
-        }
 
-    }
+    // stage('Build') {
+    // //   container('gradle') {
+    // //     sh "gradle build"
+    // //   }
+    //     container('maven') {
+    //       sh 'mvn -B clean compile'
+    //     }
+
+    // }
     
-    stage ('Publish Container') {
+    // stage ('Publish Container') {
 
-      // container('docker') {
-      // }
-      //JIB
-      container('maven') {
-          // sh 'mvn -B compile jib:build'
-          sh 'mvn -B package -Djib.to.auth.username=${IBM_REGISTRY_USER} -Djib.to.auth.password=${IBM_REGISTRY_API_KEY}'
-      }
+    //   // container('docker') {
+    //   // }
+    //   //JIB
+    //   container('maven') {
+    //       // sh 'mvn -B compile jib:build'
+    //       sh 'mvn -B package -Djib.to.auth.username=${IBM_REGISTRY_USER} -Djib.to.auth.password=${IBM_REGISTRY_API_KEY}'
+    //   }
 
-    }
+    // }
 
     // stage ('Helm Deployment') {
 
@@ -86,15 +87,17 @@ volumes: [
     // }
      
 
-    // stage('Run kubectl') {
-    //   container('kubectl') {
-    //     sh "kubectl get pods"
-    //   }
-    // }
-    // stage('Run helm') {
-    //   container('helm') {
-    //     sh "helm list"
-    //   }
-    // }
+    stage('Run kubectl') {
+      container('kubectl') {
+        sh "kubectl get pods"
+      }
+    }
+
+    stage('Run helm') {
+      container('helm') {
+        sh "helm list"
+      }
+    }
+    
   }
 }
