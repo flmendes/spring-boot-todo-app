@@ -1,4 +1,6 @@
-helm install jenkins-blue stable/jenkins -f jenkins-value.yaml
+helm inspect values stable/jenkins > ./jenkins.values
+
+helm install jenkins-blue stable/jenkins -f jenkins.values
 
 
 1. Get your 'admin' user password by running:
