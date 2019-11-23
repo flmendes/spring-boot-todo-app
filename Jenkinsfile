@@ -19,31 +19,6 @@ volumes: [
     def shortGitCommit = "${gitCommit[0..10]}"
     def previousGitCommit = sh(script: "git rev-parse ${gitCommit}~", returnStdout: true)
 
-    // stage ('test deployment') {
-
-    //   container('helm') {
-
-    //     // run helm chart linter
-    //     pipeline.helmLint(chart_dir)
-
-    //     // run dry-run helm chart installation
-    //     pipeline.helmDeploy(
-    //       dry_run       : true,
-    //       name          : config.app.name,
-    //       namespace     : config.app.name,
-    //       chart_dir     : chart_dir,
-    //       set           : [
-    //         "imageTag": image_tags_list.get(0),
-    //         "replicas": config.app.replicas,
-    //         "cpu": config.app.cpu,
-    //         "memory": config.app.memory,
-    //         "ingress.hostname": config.app.hostname,
-    //       ]
-    //     )
-
-    //   }
-    // }
- 
     stage('Test') {
       try {
         // container('gradle') {
@@ -72,15 +47,53 @@ volumes: [
         }
 
     }
-    stage('Run kubectl') {
-      container('kubectl') {
-        sh "kubectl get pods"
+    
+    stage ('Publish Container') {
+
+      // container('docker') {
+      // }
+      //JIB
+      container('maven') {
+          sh 'mvn -B compile jib:build'
       }
+
     }
-    stage('Run helm') {
-      container('helm') {
-        sh "helm list"
-      }
-    }
+
+    // stage ('Helm Deployment') {
+
+    //   container('helm') {
+
+    //     // run helm chart linter
+    //     pipeline.helmLint(chart_dir)
+
+    //     // run dry-run helm chart installation
+    //     pipeline.helmDeploy(
+    //       dry_run       : true,
+    //       name          : config.app.name,
+    //       namespace     : config.app.name,
+    //       chart_dir     : chart_dir,
+    //       set           : [
+    //         "imageTag": image_tags_list.get(0),
+    //         "replicas": config.app.replicas,
+    //         "cpu": config.app.cpu,
+    //         "memory": config.app.memory,
+    //         "ingress.hostname": config.app.hostname,
+    //       ]
+    //     )
+
+    //   }
+    // }
+     
+
+    // stage('Run kubectl') {
+    //   container('kubectl') {
+    //     sh "kubectl get pods"
+    //   }
+    // }
+    // stage('Run helm') {
+    //   container('helm') {
+    //     sh "helm list"
+    //   }
+    // }
   }
 }
