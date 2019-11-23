@@ -55,7 +55,7 @@ volumes: [
       //JIB
       container('maven') {
           // sh 'mvn -B compile jib:build'
-          sh 'mvn -B package'
+          sh 'mvn -B package -Djib.to.auth.username=jenkins -Djib.to.auth.password=zMnFlOcwimzQ18tvZoy5C79Zzdq8FBSobuaazvIIXfQU'
       }
 
     }
