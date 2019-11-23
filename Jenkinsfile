@@ -89,7 +89,9 @@ volumes: [
 
     stage('Run kubectl') {
       container('kubectl') {
-        sh "kubectl get pods"
+        withKubeConfig([credentialsId: 'kubeconfig']) {
+          sh "kubectl get pods"
+        }
       }
     }
 
