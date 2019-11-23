@@ -9,7 +9,8 @@ podTemplate(label: label, containers: [
 ],
 volumes: [
 //   hostPathVolume(mountPath: '/home/gradle/.gradle', hostPath: '/tmp/jenkins/.gradle'),
-  persistentVolumeClaim(mountPath: '/root/.m2/repository', claimName: 'maven-repo', readOnly: false),
+  hostPathVolume(mountPath: '/home/maven/.gradle', hostPath: '/tmp/jenkins/.maven'),
+  // persistentVolumeClaim(mountPath: '/root/.m2/repository', claimName: 'maven-repo', readOnly: false),
   hostPathVolume(mountPath: '/var/run/docker.sock', hostPath: '/var/run/docker.sock')
 ]) {
   node(label) {
