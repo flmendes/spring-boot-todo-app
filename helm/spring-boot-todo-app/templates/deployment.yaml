@@ -51,3 +51,6 @@ spec:
       tolerations:
         {{- toYaml . | nindent 8 }}
     {{- end }}
+  strategy:
+    type: RollingUpdate
+    rollingUp      maxSurge: 50%

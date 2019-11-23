@@ -19,25 +19,25 @@ volumes: [
     def shortGitCommit = "${gitCommit[0..10]}"
     def previousGitCommit = sh(script: "git rev-parse ${gitCommit}~", returnStdout: true)
 
-    stage('Test') {
-      try {
-        // container('gradle') {
-        //   sh """
-        //     pwd
-        //     echo "GIT_BRANCH=${gitBranch}" >> /etc/environment
-        //     echo "GIT_COMMIT=${gitCommit}" >> /etc/environment
-        //     gradle test
-        //     """
-        // }
-        container('maven') {
-          sh 'mvn -B test'
-        }
-      }
-      catch (exc) {
-        println "Failed to test - ${currentBuild.fullDisplayName}"
-        throw(exc)
-      }
-    }
+    // stage('Test') {
+    //   try {
+    //     // container('gradle') {
+    //     //   sh """
+    //     //     pwd
+    //     //     echo "GIT_BRANCH=${gitBranch}" >> /etc/environment
+    //     //     echo "GIT_COMMIT=${gitCommit}" >> /etc/environment
+    //     //     gradle test
+    //     //     """
+    //     // }
+    //     container('maven') {
+    //       sh 'mvn -B test'
+    //     }
+    //   }
+    //   catch (exc) {
+    //     println "Failed to test - ${currentBuild.fullDisplayName}"
+    //     throw(exc)
+    //   }
+    // }
 
     // stage('Build') {
     // //   container('gradle') {
