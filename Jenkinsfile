@@ -21,30 +21,30 @@ volumes: [
     def shortGitCommit = "${gitCommit[0..10]}"
     def previousGitCommit = sh(script: "git rev-parse ${gitCommit}~", returnStdout: true)
 
-    stage ('test deployment') {
+    // stage ('test deployment') {
 
-      container('helm') {
+    //   container('helm') {
 
-        // run helm chart linter
-        pipeline.helmLint(chart_dir)
+    //     // run helm chart linter
+    //     pipeline.helmLint(chart_dir)
 
-        // run dry-run helm chart installation
-        pipeline.helmDeploy(
-          dry_run       : true,
-          name          : config.app.name,
-          namespace     : config.app.name,
-          chart_dir     : chart_dir,
-          set           : [
-            "imageTag": image_tags_list.get(0),
-            "replicas": config.app.replicas,
-            "cpu": config.app.cpu,
-            "memory": config.app.memory,
-            "ingress.hostname": config.app.hostname,
-          ]
-        )
+    //     // run dry-run helm chart installation
+    //     pipeline.helmDeploy(
+    //       dry_run       : true,
+    //       name          : config.app.name,
+    //       namespace     : config.app.name,
+    //       chart_dir     : chart_dir,
+    //       set           : [
+    //         "imageTag": image_tags_list.get(0),
+    //         "replicas": config.app.replicas,
+    //         "cpu": config.app.cpu,
+    //         "memory": config.app.memory,
+    //         "ingress.hostname": config.app.hostname,
+    //       ]
+    //     )
 
-      }
-    }
+    //   }
+    // }
  
     stage('Test') {
       try {
@@ -73,20 +73,6 @@ volumes: [
           sh 'mvn -B clean compile'
         }
 
-    }
-    stage('Create Docker images') {
-      container('docker') {
-        withCredentials([[$class: 'UsernamePasswordMultiBinding',
-          credentialsId: 'dockerhub',
-          usernameVariable: 'DOCKER_HUB_USER',
-          passwordVariable: 'DOCKER_HUB_PASSWORD']]) {
-          sh """
-            docker login -u ${DOCKER_HUB_USER} -p ${DOCKER_HUB_PASSWORD}
-            docker build -t namespace/my-image:${gitCommit} .
-            docker push namespace/my-image:${gitCommit}
-            """
-        }
-      }
     }
     stage('Run kubectl') {
       container('kubectl') {
