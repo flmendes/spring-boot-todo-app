@@ -11,6 +11,7 @@ master:
         memory: "1024Mi"
         memory: "3500Mi"
   javaOpts: "-Xms512m -Xmx512m"  
+  
   healthProbes: true
   healthProbesLivenessTimeout: 10
   healthProbesReadinessTimeout: 10

@@ -3,7 +3,7 @@ def label = "worker-${UUID.randomUUID().toString()}"
 podTemplate(label: label, containers: [
 //   containerTemplate(name: 'gradle', image: 'gradle:4.5.1-jdk9', command: 'cat', ttyEnabled: true),
   containerTemplate(name: 'maven', image: 'maven:3.6.0-jdk-8-alpine', ttyEnabled: true, command: 'cat'),
-  containerTemplate(name: 'docker', image: 'docker', command: 'cat', ttyEnabled: false),
+  containerTemplate(name: 'docker', image: 'docker', command: 'cat', ttyEnabled: true),
   containerTemplate(name: 'kubectl', image: 'lachlanevenson/k8s-kubectl:v1.8.8', command: 'cat', ttyEnabled: true),
   containerTemplate(name: 'helm', image: 'lachlanevenson/k8s-helm:latest', command: 'cat', ttyEnabled: true),
 ],
@@ -80,7 +80,7 @@ volumes: [
           // run dry-run helm chart installation
           pipeline.helmDeploy(
             dry_run       : true,
-            name          : config.app.name,
+            // name          : config.app.name,
             chart_dir     : chart_dir,
             // set           : [
             //   "memory": config.app.memory,
@@ -91,11 +91,11 @@ volumes: [
           //  Run helm tests
           if (config.app.test) {
             pipeline.helmTest(
-              name        : config.app.name
+              // name        : config.app.name
             )
             // delete test deployment
             pipeline.helmDelete(
-              name       : config.app.name,
+              // name       : config.app.name,
             )
           }
         }
