@@ -3,12 +3,12 @@ def label = "worker-${UUID.randomUUID().toString()}"
 podTemplate(label: label, containers: [
 //   containerTemplate(name: 'gradle', image: 'gradle:4.5.1-jdk9', command: 'cat', ttyEnabled: true),
   containerTemplate(name: 'maven', image: 'maven:3.6.0-jdk-8-alpine', ttyEnabled: true, command: 'cat'),
-  containerTemplate(name: 'docker', image: 'docker', command: 'cat', ttyEnabled: true),
+  containerTemplate(name: 'docker', image: 'docker', command: 'cat', ttyEnabled: false),
   containerTemplate(name: 'kubectl', image: 'lachlanevenson/k8s-kubectl:v1.8.8', command: 'cat', ttyEnabled: true),
   containerTemplate(name: 'helm', image: 'lachlanevenson/k8s-helm:latest', command: 'cat', ttyEnabled: true),
 ],
 volumes: [
-  hostPathVolume(mountPath: '/home/maven/.gradle', hostPath: '/tmp/jenkins/.maven'),
+  hostPathVolume(mountPath: '/home/maven/.m2', hostPath: '/tmp/jenkins/.m2'),
   hostPathVolume(mountPath: '/var/run/docker.sock', hostPath: '/var/run/docker.sock')
 ]) {
   node(label) {
