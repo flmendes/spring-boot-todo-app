@@ -1,7 +1,9 @@
+
 helm inspect values stable/jenkins > ./jenkins.values
 
-helm install jenkins-blue stable/jenkins -f jenkins.values
+helm install jenkins stable/jenkins -f jenkins.values
 
+helm upgrade jenkins stable/jenkins -f jenkins.values
 
 1. Get your 'admin' user password by running:
   printf $(kubectl get secret --namespace default jenkins-blue -o jsonpath="{.data.jenkins-admin-password}" | base64 --decode);echo

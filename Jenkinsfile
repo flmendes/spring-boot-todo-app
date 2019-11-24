@@ -12,94 +12,110 @@ volumes: [
   hostPathVolume(mountPath: '/var/run/docker.sock', hostPath: '/var/run/docker.sock')
 ]) {
   node(label) {
+    
     def chart_dir = "${pwd}/helm/spring-boot-todo-app"
+
+    def inputFile = readFile('Jenkinsfile.json')
+    def config = new groovy.json.JsonSlurperClassic().parseText(inputFile)
+
+
     def myRepo = checkout scm
     def gitCommit = myRepo.GIT_COMMIT
     def gitBranch = myRepo.GIT_BRANCH
     def shortGitCommit = "${gitCommit[0..10]}"
     def previousGitCommit = sh(script: "git rev-parse ${gitCommit}~", returnStdout: true)
 
-    // stage('Test') {
-    //   try {
-    //     // container('gradle') {
-    //     //   sh """
-    //     //     pwd
-    //     //     echo "GIT_BRANCH=${gitBranch}" >> /etc/environment
-    //     //     echo "GIT_COMMIT=${gitCommit}" >> /etc/environment
-    //     //     gradle test
-    //     //     """
-    //     // }
-    //     container('maven') {
-    //       sh 'mvn -B test'
-    //     }
+    stage('Build') {
+    //   container('gradle') {
+    //     sh "gradle build"
     //   }
-    //   catch (exc) {
-    //     println "Failed to test - ${currentBuild.fullDisplayName}"
-    //     throw(exc)
-    //   }
-    // }
+        container('maven') {
+          sh 'mvn -B clean compile'
+        }
 
-    // stage('Build') {
-    // //   container('gradle') {
-    // //     sh "gradle build"
-    // //   }
-    //     container('maven') {
-    //       sh 'mvn -B clean compile'
-    //     }
+    }
 
+    stage('Test') {
+      try {
+        // container('gradle') {
+        //   sh """
+        //     pwd
+        //     echo "GIT_BRANCH=${gitBranch}" >> /etc/environment
+        //     echo "GIT_COMMIT=${gitCommit}" >> /etc/environment
+        //     gradle test
+        //     """
+        // }
+        container('maven') {
+          sh 'mvn -B test'
+        }
+      }
+      catch (exc) {
+        println "Failed to test - ${currentBuild.fullDisplayName}"
+        throw(exc)
+      }
+    }
+
+    // stage('OWASP Dependency Check') {
     // }
     
-    // stage ('Publish Container') {
+    stage ('Publish Container') {
 
-    //   // container('docker') {
-    //   // }
-    //   //JIB
-    //   container('maven') {
-    //       // sh 'mvn -B compile jib:build'
-    //       sh 'mvn -B package -Djib.to.auth.username=${IBM_REGISTRY_USER} -Djib.to.auth.password=${IBM_REGISTRY_API_KEY}'
-    //   }
+      // container('docker') {
+      // }
+      //JIB
+      container('maven') {
+          // sh 'mvn -B compile jib:build'
+          sh 'mvn -B package -Djib.to.auth.username=${IBM_REGISTRY_USER} -Djib.to.auth.password=${IBM_REGISTRY_API_KEY}'
+      }
 
-    // }
+    }
 
-    // stage ('Helm Deployment') {
+    stage ('Helm Deploy') {
 
-    //   container('helm') {
-
-    //     // run helm chart linter
-    //     pipeline.helmLint(chart_dir)
-
-    //     // run dry-run helm chart installation
-    //     pipeline.helmDeploy(
-    //       dry_run       : true,
-    //       name          : config.app.name,
-    //       namespace     : config.app.name,
-    //       chart_dir     : chart_dir,
-    //       set           : [
-    //         "imageTag": image_tags_list.get(0),
-    //         "replicas": config.app.replicas,
-    //         "cpu": config.app.cpu,
-    //         "memory": config.app.memory,
-    //         "ingress.hostname": config.app.hostname,
-    //       ]
-    //     )
-
-    //   }
-    // }
-     
-
-    stage('Run kubectl') {
-      container('kubectl') {
+      container('helm') {
         withKubeConfig([credentialsId: 'kubeconfig']) {
-          sh "kubectl get pods"
+          // run helm chart linter
+          pipeline.helmLint(chart_dir)
+
+          // run dry-run helm chart installation
+          pipeline.helmDeploy(
+            dry_run       : true,
+            name          : config.app.name,
+            chart_dir     : chart_dir,
+            // set           : [
+            //   "memory": config.app.memory,
+            //   "ingress.hostname": config.app.hostname,
+            // ]
+          )
+
+          //  Run helm tests
+          if (config.app.test) {
+            pipeline.helmTest(
+              name        : config.app.name
+            )
+            // delete test deployment
+            pipeline.helmDelete(
+              name       : config.app.name,
+            )
+          }
         }
       }
     }
+     
 
-    stage('Run helm') {
-      container('helm') {
-        sh "helm list"
-      }
-    }
+    // stage('Run kubectl') {
+    //   container('kubectl') {
+    //     withKubeConfig([credentialsId: 'kubeconfig']) {
+    //       sh "kubectl get pods"
+    //     }
+    //   }
+    // }
+
+    // stage('Run helm') {
+    //   container('helm') {
+    //     sh "helm list"
+    //   }
+    // }
     
   }
 }

@@ -31,6 +31,7 @@ master:
     - git:latest
     - ghprb:latest
     - blueocean:latest
+    - dependency-check-jenkins:latest
   
 agent:
   enabled: true
