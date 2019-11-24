@@ -29,7 +29,9 @@ volumes: [
     //     sh "gradle build"
     //   }
         container('maven') {
+          sh "ls -la ${WORKSPACE}"
           sh 'mvn -B clean compile'
+          
         }
 
     }
