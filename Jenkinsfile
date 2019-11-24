@@ -15,7 +15,7 @@ volumes: [
     
     def chart_dir = "${pwd}/helm/spring-boot-todo-app"
 
-    def inputFile = readFile('Jenkinsfile.json')
+    def inputFile = readFile("${pwd}/Jenkinsfile.json")
     def config = new groovy.json.JsonSlurperClassic().parseText(inputFile)
 
 
