@@ -3,22 +3,23 @@ clusterZone: "dal10"
 master:
   serviceType: LoadBalancer
   resources:
-    limits:
-      cpu: "1000m"
-      memory: "2048Mi"
-  # Used to create Ingress record (should used with ServiceType: ClusterIP)
-  # nodePort: <to set explicitly, choose port between 30000-32767
-  # Enable Kubernetes Liveness and Readiness Probes
-  # ~ 2 minutes to allow Jenkins to restart when upgrading plugins. Set ReadinessTimeout to be shorter than LivenessTimeout.
+      requests:
+        cpu: "512m"
+        memory: "512Mi"
+      limits:
+        cpu: "1"
+        memory: "1024Mi"
+        memory: "3500Mi"
+  javaOpts: "-Xms512m -Xmx512m"  
   healthProbes: true
-  healthProbesLivenessTimeout: 15
-  healthProbesReadinessTimeout: 15
-  healthProbeLivenessPeriodSeconds: 30
-  healthProbeReadinessPeriodSeconds: 30
+  healthProbesLivenessTimeout: 10
+  healthProbesReadinessTimeout: 10
+  healthProbeLivenessPeriodSeconds: 15
+  healthProbeReadinessPeriodSeconds: 15
   healthProbeLivenessFailureThreshold: 15
   healthProbeReadinessFailureThreshold: 3
-  healthProbeLivenessInitialDelay: 900
-  healthProbeReadinessInitialDelay: 600
+  healthProbeLivenessInitialDelay: 400
+  healthProbeReadinessInitialDelay: 300
 
   # List of plugins to be install during Jenkins master start
   installPlugins:
@@ -30,6 +31,16 @@ master:
     - git:latest
     - ghprb:latest
     - blueocean:latest
+  
+agent:
+  enabled: true
+  resources:
+    requests:
+      cpu: "500m"
+      memory: "256Mi"
+    limits:
+      cpu: "1"
+      memory: "512Mi"
 
 persistence:
   storageClass: "ibmc-file-bronze"
