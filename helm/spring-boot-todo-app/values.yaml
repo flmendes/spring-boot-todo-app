@@ -1,7 +1,7 @@
 replicaCount: 2
 
 image:
-  repository: us.icr.io/mendes/spring-boot-todo-app
+  repository: us.icr.io/treinamento/spring-boot-todo-app
   pullPolicy: IfNotPresent
 
 imagePullSecrets: []
