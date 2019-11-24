@@ -74,29 +74,9 @@ volumes: [
       container('helm') {
         withKubeConfig([credentialsId: 'kubeconfig']) {
           // run helm chart linter
-          pipeline.helmLint(chart_dir)
-
-          // run dry-run helm chart installation
-          pipeline.helmDeploy(
-            dry_run       : true,
-            // name          : config.app.name,
-            chart_dir     : chart_dir,
-            // set           : [
-            //   "memory": config.app.memory,
-            //   "ingress.hostname": config.app.hostname,
-            // ]
-          )
-
-          //  Run helm tests
-          if (config.app.test) {
-            pipeline.helmTest(
-              // name        : config.app.name
-            )
-            // delete test deployment
-            pipeline.helmDelete(
-              // name       : config.app.name,
-            )
-          }
+          // pipeline.helmLint(chart_dir)
+          sh "helm lint ${chart_dir}"
+          sh "helm upgrade --install ${chart_dir}"
         }
       }
     }
