@@ -1,3 +1,5 @@
+#!/usr/bin/groovy
+
 def label = "worker-${UUID.randomUUID().toString()}"
 
 podTemplate(label: label, containers: [
@@ -26,9 +28,7 @@ volumes: [
     //     sh "gradle build"
     //   }
         container('maven') {
-          sh "ls -la ${WORKSPACE}"
           sh 'mvn -B clean compile'
-          
         }
 
     }
@@ -69,15 +69,16 @@ volumes: [
     }
 
     stage ('Helm Deploy') {
-      def inputFile = readFile("${WORKSPACE}/Jenkinsfile.json")
-      def config = new groovy.json.JsonSlurperClassic().parseText(inputFile)
-      
+      // def inputFile = readFile("${WORKSPACE}/Jenkinsfile.json")
+      // def config = new groovy.json.JsonSlurperClassic().parseText(inputFile)
+
       container('helm') {
         withKubeConfig([credentialsId: 'kubeconfig']) {
           // run helm chart linter
           // pipeline.helmLint(chart_dir)
           sh "helm lint ${chart_dir}"
-          sh "helm upgrade --install --wait ${config.app.name} ${chart_dir}"
+          sh "helm upgrade --install --wait spring-boot-todo-app ${chart_dir}"
+          sh "helm test spring-boot-todo-app --cleanup"
         }
       }
     }
