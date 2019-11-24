@@ -6,6 +6,11 @@ metadata:
     {{- include "spring-boot-todo-app.labels" . | nindent 4 }}
 spec:
   replicas: {{ .Values.replicaCount }}
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 25%
   selector:
     matchLabels:
       {{- include "spring-boot-todo-app.selectorLabels" . | nindent 6 }}
@@ -34,6 +39,9 @@ spec:
               path: /
               port: http
           readinessProbe:
+            periodSeconds: 20
+            initialDelaySeconds: 5
+            successThreshold: 1
             httpGet:
               path: /
               port: http
@@ -51,6 +59,3 @@ spec:
       tolerations:
         {{- toYaml . | nindent 8 }}
     {{- end }}
-  strategy:
-    type: RollingUpdate
-    rollingUp      maxSurge: 50%
