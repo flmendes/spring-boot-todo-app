@@ -15,9 +15,8 @@ volumes: [
     
     def chart_dir = "${pwd}/helm/spring-boot-todo-app"
 
-    def inputFile = readFile("Jenkinsfile.json")
-    def config = new groovy.json.JsonSlurperClassic().parseText(inputFile)
-
+    // def inputFile = readFile("Jenkinsfile.json")
+    // def config = new groovy.json.JsonSlurperClassic().parseText(inputFile)
 
     def myRepo = checkout scm
     def gitCommit = myRepo.GIT_COMMIT
