@@ -15,9 +15,6 @@ volumes: [
     
     def chart_dir = "${WORKSPACE}/helm/spring-boot-todo-app"
 
-    // def inputFile = readFile("${WORKSPACE}/Jenkinsfile.json")
-    // def config = new groovy.json.JsonSlurperClassic().parseText(inputFile)
-
     def myRepo = checkout scm
     def gitCommit = myRepo.GIT_COMMIT
     def gitBranch = myRepo.GIT_BRANCH
@@ -72,7 +69,9 @@ volumes: [
     }
 
     stage ('Helm Deploy') {
-
+      def inputFile = readFile("${WORKSPACE}/Jenkinsfile.json")
+      def config = new groovy.json.JsonSlurperClassic().parseText(inputFile)
+      
       container('helm') {
         withKubeConfig([credentialsId: 'kubeconfig']) {
           // run helm chart linter
