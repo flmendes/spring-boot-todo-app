@@ -36,17 +36,21 @@ spec:
             {{- toYaml .Values.container.ports | nindent 12 }}
           livenessProbe:
             httpGet:
-              path: /
+              path: /actuator/health
               port: http
+            failureThreshold: 30
+            periodSeconds: 10            
           readinessProbe:
-            periodSeconds: 20
-            initialDelaySeconds: 5
-            successThreshold: 1
             httpGet:
-              path: /
+              path: /actuator/health
               port: http
+            periodSeconds: 20
+            initialDelaySeconds: 10
+            successThreshold: 1
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
+      imagePullSecrets:
+        - name: default-us-icr-io
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
