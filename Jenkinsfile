@@ -78,7 +78,7 @@ volumes: [
           // pipeline.helmLint(chart_dir)
           sh "helm lint ${chart_dir}"
           sh "helm upgrade --install --wait spring-boot-todo-app ${chart_dir}"
-          sh "helm test spring-boot-todo-app --cleanup"
+          sh "helm test spring-boot-todo-app"
         }
       }
     }
