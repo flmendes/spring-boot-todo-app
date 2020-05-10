@@ -1,0 +1,139 @@
+
+Showing logs for build [32mflmendes-spring-boot-todo-app-m-vdmrc-2[0m stage [32mfrom-build-pack[0m and container [32mstep-credential-initializer-d8d7f[0m
+{"level":"info","ts":1589136606.6409228,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: open /var/run/ko/refs/heads/0.8.0-ns-support: no such file or directory"}
+{"level":"info","ts":1589136606.6415777,"logger":"fallback-logger","caller":"creds-init/main.go:40","msg":"Credentials initialized."}
+
+Showing logs for build [32mflmendes-spring-boot-todo-app-m-vdmrc-2[0m stage [32mfrom-build-pack[0m and container [32mstep-working-dir-initializer-9dph5[0m
+{"level":"info","ts":1589136608.2451656,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: open /var/run/ko/HEAD: no such file or directory"}
+{"level":"info","ts":1589136608.2467213,"logger":"fallback-logger","caller":"bash/main.go:64","msg":"Successfully executed command \"sh -c mkdir -p /workspace/source\"; output "}
+
+Showing logs for build [32mflmendes-spring-boot-todo-app-m-vdmrc-2[0m stage [32mfrom-build-pack[0m and container [32mstep-place-tools[0m
+
+Showing logs for build [32mflmendes-spring-boot-todo-app-m-vdmrc-2[0m stage [32mfrom-build-pack[0m and container [32mstep-git-source-flmendes-spring-boot-todo-app-m-vdmrc-9nbs6[0m
+{"level":"info","ts":1589136617.6378205,"logger":"fallback-logger","caller":"logging/config.go:69","msg":"Fetch GitHub commit ID from kodata failed: open /var/run/ko/refs/heads/0.8.0-ns-support: no such file or directory"}
+{"level":"info","ts":1589136618.0758052,"logger":"fallback-logger","caller":"git/git.go:103","msg":"Successfully cloned https://github.com/********/spring-boot-todo-app.git @ v1.0.1 in path /workspace/source"}
+
+Showing logs for build [32mflmendes-spring-boot-todo-app-m-vdmrc-2[0m stage [32mfrom-build-pack[0m and container [32mstep-git-merge[0m
+Using SHAs from PULL_REFS=master:18c8efe681252ae745006d97b3579afdc9d5fcb2
+WARNING: no SHAs to merge, falling back to initial cloned commit
+
+Showing logs for build [32mflmendes-spring-boot-todo-app-m-vdmrc-2[0m stage [32mfrom-build-pack[0m and container [32mstep-setup-jx-git-credentials[0m
+Generated Git credentials file /workspace/xdg_config/git/credentials
+
+Showing logs for build [32mflmendes-spring-boot-todo-app-m-vdmrc-2[0m stage [32mfrom-build-pack[0m and container [32mstep-build-mvn-deploy[0m
+Picked up _JAVA_OPTIONS: -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap -Dsun.zip.disableMemoryMapping=true -XX:+UseParallelGC -XX:MinHeapFreeRatio=5 -XX:MaxHeapFreeRatio=10 -XX:GCTimeRatio=4 -XX:AdaptiveSizePolicyWeight=90 -Xms10m -Xmx192m
+OpenJDK 64-Bit Server VM warning: If the number of processors is expected to increase from one, then you should configure the number of parallel GC threads appropriately using -XX:ParallelGCThreads=N
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ----------------< io.mendes.todo:spring-boot-todo-app >-----------------
+[INFO] Building spring-boot-todo-app 1.0.1
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- maven-clean-plugin:3.1.0:clean (default-clean) @ spring-boot-todo-app ---
+[INFO] 
+[INFO] --- maven-resources-plugin:3.1.0:resources (default-resources) @ spring-boot-todo-app ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 1 resource
+[INFO] Copying 2 resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.8.1:compile (default-compile) @ spring-boot-todo-app ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 4 source files to /workspace/source/target/classes
+[INFO] 
+[INFO] --- maven-resources-plugin:3.1.0:testResources (default-testResources) @ spring-boot-todo-app ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /workspace/source/src/test/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.8.1:testCompile (default-testCompile) @ spring-boot-todo-app ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 1 source file to /workspace/source/target/test-classes
+[INFO] 
+[INFO] --- maven-surefire-plugin:3.0.0-M1:test (default-test) @ spring-boot-todo-app ---
+[INFO] 
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running io.mendes.todo.SpringBootTodoAppApplicationTests
+18:50:56.541 [main] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating CacheAwareContextLoaderDelegate from class [org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate]
+18:50:56.631 [main] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating BootstrapContext using constructor [public org.springframework.test.context.support.DefaultBootstrapContext(java.lang.Class,org.springframework.test.context.CacheAwareContextLoaderDelegate)]
+18:50:56.729 [main] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating TestContextBootstrapper for test class [io.mendes.todo.SpringBootTodoAppApplicationTests] from class [org.springframework.boot.test.context.SpringBootTestContextBootstrapper]
+18:50:56.810 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Neither @ContextConfiguration nor @ContextHierarchy found for test class [io.mendes.todo.SpringBootTodoAppApplicationTests], using SpringBootContextLoader
+18:50:56.819 [main] DEBUG org.springframework.test.context.support.AbstractContextLoader - Did not detect default resource location for test class [io.mendes.todo.SpringBootTodoAppApplicationTests]: class path resource [io/mendes/todo/SpringBootTodoAppApplicationTests-context.xml] does not exist
+18:50:56.820 [main] DEBUG org.springframework.test.context.support.AbstractContextLoader - Did not detect default resource location for test class [io.mendes.todo.SpringBootTodoAppApplicationTests]: class path resource [io/mendes/todo/SpringBootTodoAppApplicationTestsContext.groovy] does not exist
+18:50:56.820 [main] INFO org.springframework.test.context.support.AbstractContextLoader - Could not detect default resource locations for test class [io.mendes.todo.SpringBootTodoAppApplicationTests]: no resource found for suffixes {-context.xml, Context.groovy}.
+18:50:56.822 [main] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [io.mendes.todo.SpringBootTodoAppApplicationTests]: SpringBootTodoAppApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+18:50:56.922 [main] DEBUG org.springframework.test.context.support.ActiveProfilesUtils - Could not find an 'annotation declaring class' for annotation type [org.springframework.test.context.ActiveProfiles] and class [io.mendes.todo.SpringBootTodoAppApplicationTests]
+18:50:57.132 [main] DEBUG org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider - Identified candidate component class: file [/workspace/source/target/classes/io/mendes/todo/SpringBootTodoAppApplication.class]
+18:50:57.142 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration io.mendes.todo.SpringBootTodoAppApplication for test class io.mendes.todo.SpringBootTodoAppApplicationTests
+18:50:57.511 [main] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper - @TestExecutionListeners is not present for class [io.mendes.todo.SpringBootTodoAppApplicationTests]: using defaults.
+18:50:57.519 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+18:50:57.608 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@12aba8be, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@290222c1, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@67f639d3, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@6253c26, org.springframework.test.context.support.DirtiesContextTestExecutionListener@49049a04, org.springframework.test.context.transaction.TransactionalTestExecutionListener@71a8adcf, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@27462a88, org.springframework.test.context.event.EventPublishingTestExecutionListener@82de64a, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@659499f1, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@51e69659, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@47e2e487, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@201a4587, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@61001b64]
+18:50:57.619 [main] DEBUG org.springframework.test.context.support.AbstractDirtiesContextTestExecutionListener - Before test class: context [DefaultTestContext@59505b48 testClass = SpringBootTodoAppApplicationTests, testInstance = [null], testMethod = [null], testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@4efac082 testClass = SpringBootTodoAppApplicationTests, locations = '{}', classes = '{class io.mendes.todo.SpringBootTodoAppApplication}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true}', contextCustomizers = set[org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@22a637e7, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@659a969b, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@29626d54, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@3f197a46], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map['org.springframework.test.context.web.ServletTestExecutionListener.activateListener' -> true]], class annotated with @DirtiesContext [false] with mode [null].
+18:50:57.712 [main] DEBUG org.springframework.test.context.support.TestPropertySourceUtils - Adding inlined properties to environment: {spring.jmx.enabled=false, org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true, server.port=-1}
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::        (v2.2.0.RELEASE)
+
+2020-05-10 18:50:58.495  INFO 67 --- [           main] i.m.t.SpringBootTodoAppApplicationTests  : Starting SpringBootTodoAppApplicationTests on ********-spring-boot-todo-app-m-vdmrc-2-from-build-pack-hxddb-p with PID 67 (started by root in /workspace/source)
+2020-05-10 18:50:58.497  INFO 67 --- [           main] i.m.t.SpringBootTodoAppApplicationTests  : No active profile set, falling back to default profiles: default
+2020-05-10 18:51:01.809  INFO 67 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2020-05-10 18:51:02.199  INFO 67 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 376ms. Found 1 repository interfaces.
+2020-05-10 18:51:04.333  INFO 67 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-05-10 18:51:05.534  INFO 67 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2020-05-10 18:51:06.516  INFO 67 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2020-05-10 18:51:06.810  INFO 67 --- [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2020-05-10 18:51:07.240  INFO 67 --- [           main] org.hibernate.Version                    : HHH000412: Hibernate Core {5.4.6.Final}
+2020-05-10 18:51:07.735  INFO 67 --- [           main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-05-10 18:51:08.204  INFO 67 --- [           main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2020-05-10 18:51:11.104  INFO 67 --- [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2020-05-10 18:51:11.115  INFO 67 --- [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2020-05-10 18:51:13.313  WARN 67 --- [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2020-05-10 18:51:16.106  INFO 67 --- [           main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-05-10 18:51:16.811  INFO 67 --- [           main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2020-05-10 18:51:20.420  INFO 67 --- [           main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@7074da1d, org.springframework.security.web.context.SecurityContextPersistenceFilter@7adff6cb, org.springframework.security.web.header.HeaderWriterFilter@195cbf5e, org.springframework.security.web.csrf.CsrfFilter@1de6dc80, org.springframework.security.web.authentication.logout.LogoutFilter@6c56fff, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@4f356b98, org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@e2f6a45, org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@5bdb6ea8, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@1554eaa4, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@4e80960a, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@2ee095c9, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@3e55eeb9, org.springframework.security.web.session.SessionManagementFilter@49665f92, org.springframework.security.web.access.ExceptionTranslationFilter@726ef6aa, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@335896bd]
+2020-05-10 18:51:21.511  INFO 67 --- [           main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 2 endpoint(s) beneath base path '/actuator'
+2020-05-10 18:51:21.798  INFO 67 --- [           main] i.m.t.SpringBootTodoAppApplicationTests  : Started SpringBootTodoAppApplicationTests in 24.073 seconds (JVM running for 28.389)
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 26.017 s - in io.mendes.todo.SpringBootTodoAppApplicationTests
+2020-05-10 18:51:22.597  INFO 67 --- [extShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2020-05-10 18:51:22.602  INFO 67 --- [extShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2020-05-10 18:51:22.602  INFO 67 --- [extShutdownHook] .SchemaDropperImpl$DelayedDropActionImpl : HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+2020-05-10 18:51:22.617  INFO 67 --- [extShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2020-05-10 18:51:22.628  INFO 67 --- [extShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+[INFO] 
+[INFO] Results:
+[INFO] 
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0
+[INFO] 
+[INFO] 
+[INFO] --- maven-jar-plugin:3.1.2:jar (default-jar) @ spring-boot-todo-app ---
+[INFO] Building jar: /workspace/source/target/spring-boot-todo-app-1.0.1.jar
+[INFO] 
+[INFO] --- spring-boot-maven-plugin:2.2.0.RELEASE:repackage (repackage) @ spring-boot-todo-app ---
+[INFO] Replacing main artifact with repackaged archive
+[INFO] 
+[INFO] --- maven-install-plugin:2.5.2:install (default-install) @ spring-boot-todo-app ---
+[INFO] Installing /workspace/source/target/spring-boot-todo-app-1.0.1.jar to /home/jenkins/.mvnrepository/io/mendes/todo/spring-boot-todo-app/1.0.1/spring-boot-todo-app-1.0.1.jar
+[INFO] Installing /workspace/source/pom.xml to /home/jenkins/.mvnrepository/io/mendes/todo/spring-boot-todo-app/1.0.1/spring-boot-todo-app-1.0.1.pom
+[INFO] 
+[INFO] --- maven-deploy-plugin:2.8.2:deploy (default-deploy) @ spring-boot-todo-app ---
+[INFO] Using alternate deployment repository local-nexus::default::http://nexus/repository/maven-releases/
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  01:08 min
+[INFO] Finished at: 2020-05-10T18:51:31Z
+[INFO] ------------------------------------------------------------------------
+
+Showing logs for build [32mflmendes-spring-boot-todo-app-m-vdmrc-2[0m stage [32mfrom-build-pack[0m and container [32mstep-build-skaffold-version[0m
+v1.0.1
+
+Showing logs for build [32mflmendes-spring-boot-todo-app-m-vdmrc-2[0m stage [32mfrom-build-pack[0m and container [32mstep-build-container-build[0m
+ERROR: logging before flag.Parse: E0510 18:51:34.805423       9 metadata.go:241] Failed to unmarshal scopes: invalid character 'h' looking for beginning of value
+error checking push permissions -- make sure you entered the correct tag name, and that you are authenticated correctly, and try again: checking push permission for "docker.io/pure-fold-276815/spring-boot-todo-app:1.0.1": UNAUTHORIZED: authentication required; [map[Action:pull Class: Name:pure-fold-276815/spring-boot-todo-app Type:repository] map[Action:push Class: Name:pure-fold-276815/spring-boot-todo-app Type:repository]]
+[31m
+Pipeline failed on stage 'from-build-pack' : container 'step-build-container-build'. The execution of the pipeline has stopped.[0m
