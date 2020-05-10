@@ -2,7 +2,7 @@ apiVersion: skaffold/v1beta2
 kind: Config
 build:
   artifacts:
-  - image: pure-fold-276815/spring-boot-todo-app
+  - image: flmendes/spring-boot-todo-app
     context: .
     docker: {}
   tagPolicy:
