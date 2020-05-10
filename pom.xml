@@ -77,17 +77,17 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
-			<plugin>
+      <!-- <plugin>
                 <groupId>com.google.cloud.tools</groupId>
                 <artifactId>jib-maven-plugin</artifactId>
                 <version>1.8.0</version>
                 <configuration>
-					<from>
-						<image>openjdk:8u222-jre</image>
-					</from>
-					<to>
-						<image>us.icr.io/treinamento/spring-boot-todo-app</image>
-					</to>                    
+          <from>
+            <image>openjdk:8u222-jre</image>
+          </from>
+          <to>
+            <image>us.icr.io/treinamento/spring-boot-todo-app</image>
+          </to>
                 </configuration>
                 <executions>
                     <execution>
@@ -97,7 +97,7 @@
                         </goals>
                     </execution>
                 </executions>
-            </plugin>
+            </plugin> -->
 
 		
       <plugin>
