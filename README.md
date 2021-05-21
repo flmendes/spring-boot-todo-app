@@ -1,15 +1,14 @@
 
-helm inspect values stable/jenkins > ./jenkins.values
+## Spring Boot TODO APP
 
-helm install jenkins stable/jenkins -f jenkins.values
+Pet project para estudos de GitOps, Helm e OpenJ9
 
-helm upgrade jenkins stable/jenkins -f jenkins.values
+### Install Jenkins tradicional no cluster Kubernetes
+    helm inspect values stable/jenkins > ./jenkins.values
 
-1. Get your 'admin' user password by running:
-  printf $(kubectl get secret --namespace default delivery-jenkins -o jsonpath="{.data.jenkins-admin-password}" | base64 --decode);echo
-2. Get the Jenkins URL to visit by running these commands in the same shell:
-  export POD_NAME=$(kubectl get pods --namespace default -l "app.kubernetes.io/component=jenkins-master" -l "app.kubernetes.io/instance=delivery" -o jsonpath="{.items[0].metadata.name}")
-  echo http://127.0.0.1:8080
-  kubectl --namespace default port-forward $POD_NAME 8080:8080
+    helm install jenkins stable/jenkins -f jenkins.values
 
-3. Login with the password from step 1 and the username: admin
+    helm upgrade jenkins stable/jenkins -f jenkins.values
+
+### Como criar a imagem Docker
+    docker build . --tag flmendes/spring-boot-app:v2.0.2
