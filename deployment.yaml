@@ -21,6 +21,8 @@ spec:
         - image: de.icr.io/station/spring-boot-app
           name: spring-boot-todo-app
           resources: {}
+          ports:
+            - containerPort: 8080
           livenessProbe:
             httpGet:
               path: /actuator/health/liveness

@@ -5,11 +5,10 @@ metadata:
   labels:
     app: spring-boot-todo-app
 spec:
-  type: NodePort
   ports:
-    - port: 8090
+    - port: 80
       protocol: TCP
       targetPort: 8080
-      nodePort: 30091
+  type: LoadBalancer
   selector:
     app: spring-boot-todo-app
