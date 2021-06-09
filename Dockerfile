@@ -12,7 +12,7 @@ FROM alpine:3.8
 
 COPY --from=build /app/target/runtime-image /app
 
-COPY --from=build /app/target/spring-boot-todo-app-1.1.0-SNAPSHOT.jar \
+COPY --from=build /app/target/spring-boot-todo-app-2.0.0-SNAPSHOT.jar \
                   /app/spring-boot-todo-app.jar
 
 ENTRYPOINT ["/app/bin/java", "-jar"]
