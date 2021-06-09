@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: spring-boot-todo-app
+  name: spring-boot-todo-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: spring-boot-todo-app
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: spring-boot-todo-app
+    spec:
+      containers:
+        - image: de.icr.io/station/spring-boot-app
+          name: spring-boot-todo-app
+          resources: {}
+          livenessProbe:
+            httpGet:
+              path: /actuator/health/liveness
+              port: 8080
+          readinessProbe:
+            httpGet:
+              path: /actuator/health/readiness
+              port: 8080
+          lifecycle:
+            preStop:
+              exec:
+                command: ["sh", "-c", "sleep 10"]
+status: {}

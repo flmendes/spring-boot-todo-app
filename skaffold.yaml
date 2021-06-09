@@ -1,0 +1,14 @@
+apiVersion: skaffold/v2beta14
+kind: Config
+metadata:
+  name: spring-boot-todo-app
+build:
+  artifacts:
+  - image: de.icr.io/station/spring-boot-app
+    docker:
+      dockerfile: Dockerfile
+deploy:
+  kubectl:
+    manifests:
+    - deployment.yaml
+    - service.yaml
