@@ -18,4 +18,7 @@ Pet project para estudos de GitOps, Helm e OpenJ9
 #### Antes de executar o comando acima verifique qual o container registry você está logado
     ibmcloud cr login
     ibmcloud cr namespace-add <my_namespace>
+
+#### Como recuperar o IP publico do cluster
+    ibmcloud ks worker ls --cluster <ID_CLUSTER>
   
