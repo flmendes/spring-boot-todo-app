@@ -18,7 +18,7 @@ spec:
         app: spring-boot-todo-app
     spec:
       containers:
-        - image: flmendes/spring-boot-app
+        - image: docker.io/flmendes/spring-boot-app:latest
           name: spring-boot-todo-app
           resources: {}
           ports:
